@@ -17,12 +17,16 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dispatch": "^1.0.2",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-serve-static-core": "^0.1.1",
+    "firebase": "^10.9.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    "react": "^18.2.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
