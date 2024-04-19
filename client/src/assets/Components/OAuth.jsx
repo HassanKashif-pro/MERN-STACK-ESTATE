@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function OAuth() {
   const dispatch = useDispatch(); // Initialize useDispatch hook
-  const navigate = userNavigate();
+  const navigate = useNavigate();
   const handleGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -28,7 +28,7 @@ export default function OAuth() {
 
       if (!res.ok) {
         throw new Error('Failed to fetch user data');
-      }
+      } 
 
       const data = await res.json();
       dispatch(signInSuccess(data));
@@ -46,5 +46,5 @@ export default function OAuth() {
     >
       Continue With Google
     </button>
-  );
+    );
 }
