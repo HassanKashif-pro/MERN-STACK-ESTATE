@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'; // Assuming you're using React Router f
 import OAuth from '../assets/Components/OAuth';
 
 export default function SignUp() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -16,24 +16,28 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    if(data.success === false) {
-      setError(data.message);
+    try {
+      setLoading(true);
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        setError(data.message);
+        setLoading(false);
+        return;
+      }
       setLoading(false);
-      return;
+      console.log(data);
+    } catch (error) {
+      console.error('Failed to sign up:', error);
+      setLoading(false);
     }
-    setLoading(false);
-    console.log(data);
   };
-  console.log(formData);
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
